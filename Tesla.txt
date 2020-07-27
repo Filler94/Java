@@ -1,0 +1,25 @@
+firstname: 	Kristian
+lastname: 	Dimitrov	
+ID: 	1526463
+DegreeProgram: 	COP
+GradYear: 	2018
+GPA: 	2.9
+firstname: 	Peter
+lastname: 	Koev	
+ID: 	1528485
+DegreeProgram: 	Computer Science
+GradYear: 	2018
+GPA: 	3.5
+firstname: 	Wesley
+lastname: 	White	
+ID: 	1525455
+DegreeProgram: 	Buisnes
+GradYear: 	2020
+GPA: 	3.3
+firstname: 	Nikolay
+lastname: 	Zhelev	
+ID: 	1527477
+DegreeProgram: 	Sports
+GradYear: 	2018
+GPA: 	3.4
+
