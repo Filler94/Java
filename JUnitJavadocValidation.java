@@ -1,4 +1,4 @@
-package week01;
+package week02;
 
 import static org.junit.Assert.*;
 
@@ -24,11 +24,10 @@ public class JUnitJavadocValidation
 		m_stream = System.out; // Standard out
 		m_methods = new ArrayList<MethodData>();
 
-		m_methods.add(new MethodData("getSize", 0, "int"));
-		m_methods.add(new MethodData("isEmpty", 0, "boolean"));
-		m_methods.add(new MethodData("peek", 0, "T"));
-		m_methods.add(new MethodData("pop", 0, "T"));
-		m_methods.add(new MethodData("push", 1));
+		m_methods.add(new MethodData("execute"));
+		m_methods.add(new MethodData("getElapsedTimeInMilliseconds", 0, "long"));
+		m_methods.add(new MethodData("getIteratorElapsedTimeInMilliseconds", 0, "long"));
+		m_methods.add(new MethodData("getListSize", 0, "long"));
 	}
 
 	@Test
@@ -37,8 +36,8 @@ public class JUnitJavadocValidation
 		trace("Validating Javadoc");
 
 		// Update these values for each assignment
-		m_packageName = "week01";
-		assertTrue(validateJavadoc("GenericStack.java"));
+		m_packageName = "week02";
+		assertTrue(validateJavadoc("IteratorTest.java"));
 	}
 
 	/**
@@ -193,16 +192,10 @@ public class JUnitJavadocValidation
 						
 					case 1:
 						trace("Testing single parameters");
-						fragment = fragment.trim();
 						if( fragment.matches(ONEPARAM) )
 						{
 							trace(" valid single parameter");
 							mData.setValid();
-						}
-						else
-						{
-							trace("Invalid single parameter: expected pattern: " + ONEPARAM
-									+ " actual: " + fragment);
 						}
 						break;
 				}
@@ -304,7 +297,7 @@ public class JUnitJavadocValidation
 	protected PrintStream m_stream;
 	private String m_packageName;
 	private ArrayList<MethodData> m_methods;
-	private static String ONEPARAM = "\\w* \\w*\\(\\w* \\w*\\)( \\{)?";//"\\w* \\w*\\(\\w* \\w*\\)( \\w)?";//"\\w* \\w*\\(\\w* \\w*\\)";
+	private static String ONEPARAM = "\\w* \\w*\\(\\w* \\w*\\)";
 }
 
 /**

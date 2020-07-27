@@ -1,4 +1,4 @@
-package week01;
+package week02;
 
 import java.util.List;
 import org.junit.runner.Result;
@@ -19,7 +19,7 @@ public class TestHarness
 		try
 		{
 			boolean javadocTest = executeTest(JUnitJavadocValidation.class);
-			boolean genericTest = executeTest(JUnitGenericStackTest.class);
+			boolean genericTest = executeTest(JUnitIteratorTest.class);
 			boolean result = javadocTest && genericTest;
 
 			trace(result ? "Tests Passed" : "Tests Failed");
@@ -32,7 +32,7 @@ public class TestHarness
 	
 	private boolean executeTest(Class c)
 	{
-		trace(" -- executing " + c.getName());
+		trace("executing " + c.getName());
 		boolean success = true;
 		Result result = org.junit.runner.JUnitCore
 				.runClasses(c);
@@ -46,13 +46,9 @@ public class TestHarness
 				success = false;
 			}
 		}
-		
-		trace(" -- " + (success ? "Success" : "Failed"));
+
 		return success;			
 	}
-	
-
-
 
 	static private void trace(String msg)
 	{
