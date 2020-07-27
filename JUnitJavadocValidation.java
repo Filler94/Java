@@ -1,4 +1,4 @@
-package week05;
+package week07;
 
 import static org.junit.Assert.*;
 
@@ -28,25 +28,61 @@ public class JUnitJavadocValidation
 		m_stream = System.out; // Standard out
 
 		// setup files to analyze (constructors/methods)
+		
 		List<FileTestData> testFiles = new ArrayList<FileTestData>();
-		List<MethodTestData> gcdMethods = new ArrayList<MethodTestData>();
+		
+		// MyAbstractList.java
+		List<MethodTestData> methods1 = new ArrayList<MethodTestData>();
+		methods1.add(new MethodTestData("add",1,"void","public"));
+		methods1.add(new MethodTestData("isEmpty",0,"boolean","public"));
+		methods1.add(new MethodTestData("size",0,"int","public"));
+		
+		List<ConstructorTestData> constructors1 = new ArrayList<ConstructorTestData>();
+		constructors1.add(new ConstructorTestData("MyAbstractList", 0, "protected"));
+		constructors1.add(new ConstructorTestData("MyAbstractList", 1, "protected"));
 
-		// EuclidGcd.java
-		gcdMethods.add(new MethodTestData("start", 2, "long", "public"));
+		testFiles.add(new FileTestData("week07", "MyAbstractList.java", methods1,
+				constructors1));
 
-		List<ConstructorTestData> constructors = new ArrayList<ConstructorTestData>();
-		constructors.add(new ConstructorTestData("EuclidGcd", 0, "public"));
-
-		testFiles.add(new FileTestData("week05", "EuclidGcd.java", gcdMethods,
-				constructors));
-
-		// Fibonacci.java
-		List<MethodTestData> fibMethods = new ArrayList<MethodTestData>();
-		fibMethods.add(new MethodTestData("fib", 1, "long", "public"));
-
-		testFiles.add(new FileTestData("week05", "Fibonacci.java", fibMethods));
-
-		m_validator = new JUnitJavadocValidationUtility("Week05 Javadoc Test",
+		// MyList.java - interface
+		List<MethodTestData> myListMethods = new ArrayList<MethodTestData>();
+		myListMethods.add(new MethodTestData("add",1,"void","public"));
+		myListMethods.add(new MethodTestData("add",2,"void","public"));
+		myListMethods.add(new MethodTestData("clear",0,"void","public"));
+		myListMethods.add(new MethodTestData("contains",1,"boolean","public"));
+		myListMethods.add(new MethodTestData("get",1,"E","public"));
+		myListMethods.add(new MethodTestData("indexOf",1,"int","public"));
+		myListMethods.add(new MethodTestData("isEmpty",0,"boolean","public"));
+		myListMethods.add(new MethodTestData("lastIndexOf",1,"int","public"));
+		myListMethods.add(new MethodTestData("remove",1,"E","public"));
+		myListMethods.add(new MethodTestData("set",2,"E","public"));
+		myListMethods.add(new MethodTestData("size",0,"int","public"));
+		
+		List<ConstructorTestData> myListConstructors = new ArrayList<ConstructorTestData>();
+		testFiles.add(new FileTestData("week07", "MyList.java", myListMethods,
+				myListConstructors));
+		
+		// MyArrayList.java - interface
+		List<MethodTestData> myArrayListMethods = new ArrayList<MethodTestData>();		
+		myArrayListMethods.add(new MethodTestData("add",2,"void","public"));
+		myArrayListMethods.add(new MethodTestData("clear",0,"void","public"));
+		myArrayListMethods.add(new MethodTestData("contains",1,"boolean","public"));
+		myArrayListMethods.add(new MethodTestData("get",1,"E","public"));
+		myArrayListMethods.add(new MethodTestData("indexOf",1,"int","public"));
+		myArrayListMethods.add(new MethodTestData("iterator",0,"Iterator<E>","public"));
+		myArrayListMethods.add(new MethodTestData("lastIndexOf",1,"int","public"));
+		myArrayListMethods.add(new MethodTestData("remove",1,"E","public"));
+		myArrayListMethods.add(new MethodTestData("set",2,"E","public"));
+		myArrayListMethods.add(new MethodTestData("toString",0,"String","public"));
+		myArrayListMethods.add(new MethodTestData("trimToSize",0,"void","public"));
+		
+		List<ConstructorTestData> myArrayListConstructors = new ArrayList<ConstructorTestData>();
+		myArrayListConstructors.add(new ConstructorTestData("MyArrayList", 0, "public"));
+		myArrayListConstructors.add(new ConstructorTestData("MyArrayList", 1, "public"));
+		testFiles.add(new FileTestData("week07", "MyArrayList.java", myArrayListMethods,
+				myArrayListConstructors));
+		
+		m_validator = new JUnitJavadocValidationUtility("Week07 Javadoc Test",
 				testFiles);
 		m_validator.suppressParserTrace(true);
 	}
