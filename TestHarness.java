@@ -1,4 +1,4 @@
-package week02;
+package week04;
 
 import java.util.List;
 import org.junit.runner.Result;
@@ -18,9 +18,10 @@ public class TestHarness
 	{
 		try
 		{
+			boolean countTest = executeTest(JUnitWordOccurrenceTest.class);
 			boolean javadocTest = executeTest(JUnitJavadocValidation.class);
-			boolean genericTest = executeTest(JUnitIteratorTest.class);
-			boolean result = javadocTest && genericTest;
+			
+			boolean result = countTest && javadocTest;
 
 			trace(result ? "Tests Passed" : "Tests Failed");
 		}
@@ -29,10 +30,13 @@ public class TestHarness
 			trace(ex.getMessage());
 		}
 	}
-	
 	private boolean executeTest(Class c)
 	{
-		trace("executing " + c.getName());
+		//trace("");
+		trace("===============================================");
+		trace(" -- executing " + c.getName());
+		trace("===============================================");
+		trace("");
 		boolean success = true;
 		Result result = org.junit.runner.JUnitCore
 				.runClasses(c);
@@ -42,13 +46,35 @@ public class TestHarness
 			List<Failure> failures = result.getFailures();
 			for(Failure fail : failures)
 			{
-				trace("FAILED: " + fail.getMessage());
+				trace("FAILED: " + fail.getTestHeader() + " - " + fail.getMessage());
 				success = false;
 			}
 		}
-
+		
+		trace("-----------------------------------------------");
+		trace(" -- " + (success ? "Success" : "Failed"));
+		trace("===============================================");
+		trace("");
 		return success;			
 	}
+//	private boolean testWordOccuranceCount()
+//	{
+//		boolean success = true;
+//		Result result = org.junit.runner.JUnitCore
+//				.runClasses(JUnitWordOccurrenceTest.class);
+//		int failCount = result.getFailureCount();
+//		if(failCount > 0)
+//		{
+//			List<Failure> failures = result.getFailures();
+//			for(Failure fail : failures)
+//			{
+//				trace("FAILED: " + fail.getMessage());
+//				success = false;
+//			}
+//		}
+//
+//		return success;	
+//	}
 
 	static private void trace(String msg)
 	{
