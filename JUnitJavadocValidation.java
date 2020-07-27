@@ -1,4 +1,4 @@
-package week04;
+package week05;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,7 @@ import test.javadoc.JUnitJavadocValidationUtility;
 import test.javadoc.MethodTestData;
 import test.TestResult;
 import test.TestResultDetail;
+import test.javadoc.ConstructorTestData;
 import test.javadoc.FileTestData;
 
 /**
@@ -24,31 +25,28 @@ public class JUnitJavadocValidation
 {
 	public JUnitJavadocValidation()
 	{
-
 		m_stream = System.out; // Standard out
 
+		// setup files to analyze (constructors/methods)
 		List<FileTestData> testFiles = new ArrayList<FileTestData>();
+		List<MethodTestData> gcdMethods = new ArrayList<MethodTestData>();
 
-		List<MethodTestData> methods = new ArrayList<MethodTestData>();
+		// EuclidGcd.java
+		gcdMethods.add(new MethodTestData("start", 2, "long", "public"));
 
-		// Employee.java
-		methods.add(new MethodTestData("countWordOccurrences", 1,
-				"List<WordCountResult>", "public"));
-		testFiles.add(new FileTestData("week04", "CountUtility.java", methods));
+		List<ConstructorTestData> constructors = new ArrayList<ConstructorTestData>();
+		constructors.add(new ConstructorTestData("EuclidGcd", 0, "public"));
 
-		// DataLayer.java
-		List<MethodTestData> dlMethods = new ArrayList<MethodTestData>();
-		dlMethods
-				.add(new MethodTestData("incrementCount", 0, "void", "public"));
-		dlMethods.add(new MethodTestData("getCount", 0, "int", "public"));
-		dlMethods.add(new MethodTestData("getWord", 0, "String", "public"));
-		dlMethods.add(new MethodTestData("setCount", 1, "void", "public"));
-		dlMethods.add(new MethodTestData("setWord", 1, "void", "public"));
-		dlMethods.add(new MethodTestData("toString", 0, "String", "public"));
-		testFiles.add(
-				new FileTestData("week04", "WordCountResult.java", dlMethods));
+		testFiles.add(new FileTestData("week05", "EuclidGcd.java", gcdMethods,
+				constructors));
 
-		m_validator = new JUnitJavadocValidationUtility("Week04 Javadoc Test",
+		// Fibonacci.java
+		List<MethodTestData> fibMethods = new ArrayList<MethodTestData>();
+		fibMethods.add(new MethodTestData("fib", 1, "long", "public"));
+
+		testFiles.add(new FileTestData("week05", "Fibonacci.java", fibMethods));
+
+		m_validator = new JUnitJavadocValidationUtility("Week05 Javadoc Test",
 				testFiles);
 		m_validator.suppressParserTrace(true);
 	}
@@ -72,6 +70,7 @@ public class JUnitJavadocValidation
 				details.append(CRLF);
 			}
 		}
+
 		trace(String.format("** Test result: %s **",
 				result.passed() ? "Passed" : "Failed"));
 		assertTrue(details.toString(), result.passed());
@@ -91,8 +90,5 @@ public class JUnitJavadocValidation
 	private JUnitJavadocValidationUtility m_validator;
 
 	protected PrintStream m_stream;
-	// private String m_packageName;
-	// private ArrayList<MethodData> m_methods;
-	// private static String ONEPARAM = "\\w* \\w*\\(\\w* \\w*\\)";
 	private static String CRLF = System.getProperty("line.separator");
 }
